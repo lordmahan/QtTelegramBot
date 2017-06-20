@@ -14,10 +14,10 @@ public:
     Chat(QJsonObject chat);
 
     enum ChatType {
-        Private, Group, Channel
+        Private, Group, Channel, Supergroup
     };
 
-    qint32 id;
+    qint64 id;
     ChatType type;
     QString title;
     QString username;
