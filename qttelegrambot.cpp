@@ -299,8 +299,9 @@ File Bot::getFile(QString fileId)
 
 bool Bot::_sendPayload(QVariant chatId, QFile *filePayload, ParameterList params, qint32 replyToMessageId, const GenericReply &replyMarkup, QString payloadField, QString endpoint)
 {
-    if (chatId.type() != QVariant::String && chatId.type() != QVariant::Int) {
-        qCritical("Please provide a QString or int as chatId");
+ if (chatId.type() != QVariant::String && chatId.type() != QVariant::Int && chatId.type() != QVariant::LongLong) 
+    {
+        qCritical("Please provide a QString or Int or LongLong as chatId");
         return false;
     }
 
