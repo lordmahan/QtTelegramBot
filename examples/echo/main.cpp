@@ -8,20 +8,19 @@ Telegram::Bot *bot;
 
 void newMessage(Telegram::Message message)
 {
-    qDebug() << "new message:" << message;
+    qDebug() << "New message:" << message;
 
     if (bot && message.type == Telegram::Message::TextType) {
-        bot->sendMessage(message.from.id, message.string);
+        bot->sendMessage(message.chat.id, message.string);
     }
 }
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-
+    qDebug() << "Started Telegram Bot";
     bot = new Telegram::Bot(TOKEN, true, 500, 4);
     QObject::connect(bot, &Telegram::Bot::message, &newMessage);
-    qDebug() << "Started Telegram Bot";
 
     return a.exec();
 }
